@@ -6,10 +6,10 @@
 
 
 int main() {
-    int room_capacities[1] = {20};
-    ReservationSystem sistema = {1, room_capacities};
-    ReservationRequest reserva1 = {"matematica", "terca", 9, 11, 20};
-    ReservationRequest reserva2 = {"portugues", "terca", 10, 13, 15};
+    int room_capacities[2] = {25, 20};
+    ReservationSystem sistema = {2, room_capacities};
+    ReservationRequest reserva1 = {"matematica", "Terça", 9, 11, 20};
+    ReservationRequest reserva2 = {"portugues", "Terça", 7, 10, 21};
 
 
     if (sistema.reserve(reserva1)) {

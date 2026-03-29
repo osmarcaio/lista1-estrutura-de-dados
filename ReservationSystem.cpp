@@ -5,17 +5,27 @@
 
 
 
-
 ReservationSystem::ReservationSystem(int room_count, int* room_capacities) {
     this->room_count = room_count;
     this->room_capacities = room_capacities;
 
     this->lista_de_salas = new Sala[room_count];
-
     for (int i = 0; i < room_count; i++) {
-        Sala sala = {room_capacities[i]};
-        lista_de_salas[i] = sala;
+            lista_de_salas[i].capacity = {room_capacities[i]};
     }
+    // for (int i = 0; i < room_count; i++) {
+    //     Reserva** reservas_da_semana[5];
+    //     for (int j = 0; j < 5; j++) { 
+    //         Reserva* dia_da_semana[14];
+    //         for (int k = 0; k < 14; k++) { 
+    //             dia_da_semana[k] = nullptr;
+    //         reservas_da_semana[j] = dia_da_semana;
+    //         }
+    //     }
+        
+    //     Sala sala = {room_capacities[i], reservas_da_semana};
+    //     lista_de_salas[i] = sala;
+    // }
 }
 
 ReservationSystem::~ReservationSystem() {
@@ -24,26 +34,29 @@ ReservationSystem::~ReservationSystem() {
 
 bool ReservationSystem::reserve(ReservationRequest request) {
 
-
     Reserva* reserva = new Reserva{request.getCourseName(), request.getWeekday(), request.getStartHour(), request.getEndHour(), request.getStudentCount()};
+    int indice_weekday = converter_weekday(request.getWeekday());
 
     for (int i = 0; i < this->room_count; i++) {
         Sala& sala_atual = this->lista_de_salas[i];
         if (sala_atual.capacity >= request.getStudentCount()) {
             
-            int indice_weekday = converter_weekday(request.getWeekday());
+            bool sucesso = true;
+            
+            for (int j = (reserva->start_hour)-7; j < (reserva->end_hour)-7; j++) {
 
-            for (int j = reserva->start_hour-7; j < reserva->end_hour-7; j++) {
                 if (sala_atual.reservas_da_semana[indice_weekday][j] != nullptr) {
+                    sucesso = false;
                     break;
                 }
             }
-            
-            for (int j = reserva->start_hour-7; j < reserva->end_hour-7; j++) {
-                sala_atual.reservas_da_semana[indice_weekday][j] = reserva;
-                std::cout <<  << std::endl;
+            if (sucesso) {
+                for (int j = reserva->start_hour-7; j < reserva->end_hour-7; j++) {
+                    sala_atual.reservas_da_semana[indice_weekday][j] = reserva;
+                }
+                
+                return true;
             }
-            return true;
         }
     }
     return false;

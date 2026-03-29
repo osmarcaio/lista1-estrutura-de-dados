@@ -2,7 +2,7 @@
 #define RESERVATIONSYSTEM_HPP
 
 #include "ReservationRequest.hpp"
-#include "CustomDataStructures.hpp"
+#include "Custom.hpp"
 #include <string>
 
 
