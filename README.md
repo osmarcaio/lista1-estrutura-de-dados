@@ -29,12 +29,14 @@ O projeto está organizado nos seguintes arquivos:
 - `ReservationSystem.cpp`
 - `ReservationRequest.hpp`
 - `ReservationRequest.cpp`
+- `Custom.hpp`
 
 ### Função de cada arquivo
 
 - **main.cpp**: contém os testes que demonstram o funcionamento do sistema;
 - **ReservationRequest.hpp / ReservationRequest.cpp**: definem e implementam a classe `ReservationRequest`, responsável por representar uma solicitação de reserva;
 - **ReservationSystem.hpp / ReservationSystem.cpp**: definem e implementam a classe `ReservationSystem`, responsável por armazenar, gerenciar, reservar, cancelar e imprimir as reservas do sistema.
+- **custom.hpp**: contém a definição das structures auxiliares Sala e Reserva.
 
 ## Instruções de compilação
 
@@ -143,15 +145,4 @@ Caso a disciplina não seja encontrada, o método retorna `false`.
 
 ### 6. Funcionamento da exibição da grade
 
-No método `printSchedule`, o sistema percorre todas as salas e imprime as reservas encontradas, organizadas por sala, dia e horário. Como uma mesma reserva ocupa vários slots consecutivos, o método evita imprimir repetidamente a mesma disciplina em horários contíguos.
-
-## Observações finais
-
-- O projeto foi implementado em C++ com uso de classes e modularização em arquivos `.hpp` e `.cpp`;
-- a implementação foi feita sem estruturas prontas da STL, conforme exigido no enunciado;
-- os testes do sistema foram colocados no `main.cpp`.
-
-## Autor(es)
-
-- Nome do aluno 1
-- Nome do aluno 2
+No método `printSchedule`, o sistema percorre todas as salas e imprime as reservas encontradas, organizadas por sala, dia e horário. Como uma mesma reserva ocupa vários slots consecutivos, o método evita imprimir repetidamente a mesma disciplina.
